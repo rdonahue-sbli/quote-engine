@@ -1,3 +1,4 @@
+import { ClientProvider } from "./_trpc/provider";
 import "./globals.css";
 import { Inter, Merriweather, Assistant } from "next/font/google";
 
@@ -7,12 +8,14 @@ const inter = Inter({
   variable: "--inter-font",
   display: "swap",
 });
+
 const merriweather = Merriweather({
   subsets: ["latin"],
   variable: "--merriweather-font",
   weight: ["400", "700", "900"],
   display: "swap",
 });
+
 const assistant = Assistant({
   subsets: ["latin"],
   variable: "--assistant-font",
@@ -35,7 +38,11 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${merriweather.variable} ${assistant.variable} flex h-screen flex-col bg-white`}
     >
-      {children}
+      <body>
+        <ClientProvider>
+          {children}
+        </ClientProvider>
+      </body>
     </html>
   );
 }
