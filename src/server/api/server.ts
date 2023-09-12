@@ -14,7 +14,9 @@ export const serverClient = appRouter.createCaller({
   links: [
     httpBatchLink({
       url: `${getBaseUrl()}/api/v1/`,
+      headers: {
+        'cache-control': `s-maxage=0, stale-while-revalidate=0`,
+      },
     }),
   ],
 })
-

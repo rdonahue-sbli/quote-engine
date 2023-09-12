@@ -1,7 +1,7 @@
+import { Logo } from "./_components/Logo";
 import { ClientProvider } from "./_trpc/provider";
 import "./globals.css";
 import { Inter, Merriweather, Assistant } from "next/font/google";
-
 
 const inter = Inter({
   subsets: ["latin"],
@@ -38,8 +38,15 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${merriweather.variable} ${assistant.variable} flex h-screen flex-col bg-white`}
     >
-      <body>
+      <body className="font-assistant">
         <ClientProvider>
+          <header className="flex">
+            <div className="p-4 lg:container lg:mx-auto">
+              <div className="w-56">
+                <Logo></Logo>
+              </div>
+            </div>
+          </header>
           {children}
         </ClientProvider>
       </body>

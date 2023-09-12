@@ -3,7 +3,7 @@ import React from "react";
 export const Logo = () => {
   return (
     <svg
-      className="sbli-logo"
+      className="w-full sbli-logo"
       width="290px"
       height="87px"
       viewBox="0 0 290 87"

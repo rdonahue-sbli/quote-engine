@@ -89,8 +89,8 @@ export default function QuickQuote() {
   };
 
   return (
-    <div className="flex items-start space-x-4 px-4">
-      <div className="flex-1 rounded-bl-3xl rounded-tr-3xl bg-white p-4 text-gray-500">
+    <div className="flex flex-col gap-4 px-4">
+      <div className="flex-1 p-4 text-gray-500 bg-white rounded-bl-3xl rounded-tr-3xl">
         <h1 className="text-3xl font-bold text-sky-900">
           Protect your family with Term Life insurance
         </h1>
@@ -99,10 +99,10 @@ export default function QuickQuote() {
           onSubmit={handleSubmit(handleValidSubmit, handleErrors)}
         >
           {/* Coverage & Term Fields */}
-          <div className="flex flex-1 flex-nowrap space-x-4">
-            <div className="form-control flex-1">
-              <label className="label pb-0" htmlFor="Coverage">
-                <span className="label-text text-lg font-medium text-sky-500">
+          <div className="flex flex-1 space-x-4 flex-nowrap">
+            <div className="flex-1 form-control">
+              <label className="pb-0 label" htmlFor="Coverage">
+                <span className="text-lg font-medium label-text text-sky-500">
                   Coverage Amount
                 </span>
               </label>
@@ -123,17 +123,17 @@ export default function QuickQuote() {
                   </option>
                 ))}
               </select>
-              <label className="label h-4 pb-0 pt-1">
+              <label className="h-4 pt-1 pb-0 label">
                 {errors?.coverage && (
-                  <span className="label-text-alt text-red-500">
+                  <span className="text-red-500 label-text-alt">
                     {errors?.coverage.message}
                   </span>
                 )}
               </label>
             </div>
-            <div className="form-control flex-1">
-              <label className="label pb-0" htmlFor="Term">
-                <span className="label-text text-lg font-medium text-sky-500">
+            <div className="flex-1 form-control">
+              <label className="pb-0 label" htmlFor="Term">
+                <span className="text-lg font-medium label-text text-sky-500">
                   Term Length
                 </span>
               </label>
@@ -151,9 +151,9 @@ export default function QuickQuote() {
                   </option>
                 ))}
               </select>
-              <label className="label h-4 pb-0 pt-1">
+              <label className="h-4 pt-1 pb-0 label">
                 {errors?.term && (
-                  <span className="label-text-alt text-red-500">
+                  <span className="text-red-500 label-text-alt">
                     {errors?.term.message}
                   </span>
                 )}
@@ -161,14 +161,14 @@ export default function QuickQuote() {
             </div>
           </div>
           {/* Birthdate & Gender Fields */}
-          <div className="flex flex-1 flex-nowrap space-x-4">
-            <div className="form-control flex-1">
-              <label className="label pb-0" htmlFor="birthdate">
-                <span className="label-text text-lg font-medium text-sky-500">
+          <div className="flex flex-1 space-x-4 flex-nowrap">
+            <div className="flex-1 form-control">
+              <label className="pb-0 label" htmlFor="birthdate">
+                <span className="text-lg font-medium label-text text-sky-500">
                   Birthdate
                 </span>
               </label>
-              <div className="join flex flex-1">
+              <div className="flex flex-1 join">
                 <select
                   className={`join-item select w-full flex-auto bg-slate-200 text-slate-600 focus:outline-offset-[-1px] focus:outline-sky-400${
                     errors?.birthdate && `border-2 border-solid border-red-500`
@@ -207,17 +207,17 @@ export default function QuickQuote() {
                   {...register("birthdate.year")}
                 />
               </div>
-              <label className="label h-4 pb-0 pt-1">
+              <label className="h-4 pt-1 pb-0 label">
                 {errors?.birthdate && (
-                  <span className="label-text-alt text-red-500">
+                  <span className="text-red-500 label-text-alt">
                     {errors?.birthdate.message}
                   </span>
                 )}
               </label>
             </div>
-            <div className="form-control flex-1">
-              <label className="label pb-0" htmlFor="Gender">
-                <span className="label-text text-lg font-medium text-sky-500">
+            <div className="flex-1 form-control">
+              <label className="pb-0 label" htmlFor="Gender">
+                <span className="text-lg font-medium label-text text-sky-500">
                   Gender
                 </span>
               </label>
@@ -232,9 +232,9 @@ export default function QuickQuote() {
                   </option>
                 ))}
               </select>
-              <label className="label h-4 pb-0 pt-1">
+              <label className="h-4 pt-1 pb-0 label">
                 {errors?.gender && (
-                  <span className="label-text-alt text-red-500">
+                  <span className="text-red-500 label-text-alt">
                     {errors?.gender.message}
                   </span>
                 )}
@@ -242,10 +242,10 @@ export default function QuickQuote() {
             </div>
           </div>
           {/* First/Last Name Fields */}
-          <div className="flex flex-1 flex-nowrap space-x-4">
-            <div className="form-control flex-1">
-              <label className="label pb-0" htmlFor="firstName">
-                <span className="label-text text-lg font-medium text-sky-500">
+          <div className="flex flex-1 space-x-4 flex-nowrap">
+            <div className="flex-1 form-control">
+              <label className="pb-0 label" htmlFor="firstName">
+                <span className="text-lg font-medium label-text text-sky-500">
                   First Name
                 </span>
               </label>
@@ -258,17 +258,17 @@ export default function QuickQuote() {
                 }`}
                 {...register("firstName")}
               />
-              <label className="label h-4 pb-0 pt-1">
+              <label className="h-4 pt-1 pb-0 label">
                 {errors?.firstName && (
-                  <span className="label-text-alt text-red-500">
+                  <span className="text-red-500 label-text-alt">
                     {errors?.firstName.message}
                   </span>
                 )}
               </label>
             </div>
-            <div className="form-control flex-1">
-              <label className="label pb-0" htmlFor="lastName">
-                <span className="label-text text-lg font-medium text-sky-500">
+            <div className="flex-1 form-control">
+              <label className="pb-0 label" htmlFor="lastName">
+                <span className="text-lg font-medium label-text text-sky-500">
                   Last Name
                 </span>
               </label>
@@ -281,9 +281,9 @@ export default function QuickQuote() {
                 }`}
                 {...register("lastName")}
               />
-              <label className="label h-4 pb-0 pt-1">
+              <label className="h-4 pt-1 pb-0 label">
                 {errors?.lastName && (
-                  <span className="label-text-alt text-red-500">
+                  <span className="text-red-500 label-text-alt">
                     {errors?.lastName.message}
                   </span>
                 )}
@@ -291,10 +291,10 @@ export default function QuickQuote() {
             </div>
           </div>
           {/* Email, Phone, and Zip Fields */}
-          <div className="flex flex-1 flex-nowrap space-x-4">
-            <div className="form-control flex-1">
-              <label className="label pb-0" htmlFor="email">
-                <span className="label-text text-lg font-medium text-sky-500">
+          <div className="flex flex-1 space-x-4 flex-nowrap">
+            <div className="flex-1 form-control">
+              <label className="pb-0 label" htmlFor="email">
+                <span className="text-lg font-medium label-text text-sky-500">
                   Email
                 </span>
               </label>
@@ -307,17 +307,17 @@ export default function QuickQuote() {
                 }`}
                 {...register("email")}
               />
-              <label className="label h-4 pb-0 pt-1">
+              <label className="h-4 pt-1 pb-0 label">
                 {errors?.email && (
-                  <span className="label-text-alt text-red-500">
+                  <span className="text-red-500 label-text-alt">
                     {errors?.email.message}
                   </span>
                 )}
               </label>
             </div>
-            <div className="form-control flex-1">
-              <label className="label pb-0" htmlFor="phone">
-                <span className="label-text text-lg font-medium text-sky-500">
+            <div className="flex-1 form-control">
+              <label className="pb-0 label" htmlFor="phone">
+                <span className="text-lg font-medium label-text text-sky-500">
                   Phone
                 </span>
               </label>
@@ -330,17 +330,17 @@ export default function QuickQuote() {
                 }`}
                 {...register("phone")}
               />
-              <label className="label h-4 pb-0 pt-1">
+              <label className="h-4 pt-1 pb-0 label">
                 {errors?.phone && (
-                  <span className="label-text-alt text-red-500">
+                  <span className="text-red-500 label-text-alt">
                     {errors?.phone.message}
                   </span>
                 )}
               </label>
             </div>
-            <div className="form-control flex-1">
-              <label className="label pb-0" htmlFor="zip">
-                <span className="label-text text-lg font-medium text-sky-500">
+            <div className="flex-1 form-control">
+              <label className="pb-0 label" htmlFor="zip">
+                <span className="text-lg font-medium label-text text-sky-500">
                   Zip
                 </span>
               </label>
@@ -352,16 +352,16 @@ export default function QuickQuote() {
                 }`}
                 {...register("postalCode")}
               />
-              <label className="label h-4 pb-0 pt-1">
+              <label className="h-4 pt-1 pb-0 label">
                 {errors?.postalCode && (
-                  <span className="label-text-alt text-red-500">
+                  <span className="text-red-500 label-text-alt">
                     {errors?.postalCode.message}
                   </span>
                 )}
               </label>
             </div>
           </div>
-          <div className="mt-4 flex flex-1 flex-col flex-nowrap">
+          <div className="flex flex-col flex-1 mt-4 flex-nowrap">
             <div className="flex items-center space-x-2">
               <div className="join">
                 <input
@@ -384,15 +384,15 @@ export default function QuickQuote() {
                 tobacco products?
               </label>
             </div>
-            <label className="label h-4 pb-0 pt-1">
+            <label className="h-4 pt-1 pb-0 label">
               {errors?.isNicotineUser && (
-                <span className="label-text-alt text-red-500">
+                <span className="text-red-500 label-text-alt">
                   {errors?.isNicotineUser.message}
                 </span>
               )}
             </label>
           </div>
-          <div className="mt-4 flex flex-1 flex-col flex-nowrap">
+          <div className="flex flex-col flex-1 mt-4 flex-nowrap">
             <div className="flex items-center space-x-2">
               <div className="join">
                 <input
@@ -417,30 +417,30 @@ export default function QuickQuote() {
                 anxiety)?
               </label>
             </div>
-            <label className="label h-4 pb-0 pt-1">
+            <label className="h-4 pt-1 pb-0 label">
               {errors?.hasHealthIssues && (
-                <span className="label-text-alt text-red-500">
+                <span className="text-red-500 label-text-alt">
                   {errors?.hasHealthIssues.message}
                 </span>
               )}
             </label>
           </div>
-          <div className="col-span-2 col-start-4 flex items-end justify-end py-4">
+          <div className="flex items-end justify-end col-span-2 col-start-4 py-4">
             <button
               type="submit"
-              className="w-full self-end rounded-md bg-sky-950 p-4 text-white"
+              className="self-end w-full p-4 text-white rounded-md bg-sky-950"
             >
               Get Quote
             </button>
           </div>
         </form>
       </div>
-      <div className="max-w-md flex-1 text-white">
-        <div className="rounded-br-3xl rounded-tl-3xl bg-sky-700 px-8 py-8">
-          <h2 className="text-center text-3xl font-semibold">Policy Price</h2>
+      <div className="flex-1 md:max-w-md">
+        <div className="px-8 py-8 text-white rounded-br-3xl rounded-tl-3xl bg-sky-700">
+          <h2 className="text-3xl font-semibold text-center">Policy Price</h2>
           <div className="flex flex-col items-center py-6">
             {isSubmitting && (
-              <span className="loading loading-spinner w-20 text-yellow-400"></span>
+              <span className="w-20 text-yellow-400 loading loading-spinner"></span>
             )}
             {!isSubmitting && (
               <>
@@ -467,7 +467,7 @@ export default function QuickQuote() {
             )}
           </div>
           <div className="flex space-x-4">
-            <div className="flex flex-1 flex-col items-center justify-center rounded-bl-3xl rounded-tr-3xl bg-sky-500 bg-opacity-50 p-4">
+            <div className="flex flex-col items-center justify-center flex-1 p-4 bg-opacity-50 rounded-bl-3xl rounded-tr-3xl bg-sky-500">
               <span className="text-3xl">
                 {new Intl.NumberFormat("en-US", {
                   style: "currency",
@@ -477,7 +477,7 @@ export default function QuickQuote() {
               </span>
               <span className="font-bold uppercase">Coverage</span>
             </div>
-            <div className="flex flex-1 flex-col items-center justify-center rounded-br-3xl rounded-tl-3xl bg-sky-500 bg-opacity-50 p-4">
+            <div className="flex flex-col items-center justify-center flex-1 p-4 bg-opacity-50 rounded-br-3xl rounded-tl-3xl bg-sky-500">
               <span className="text-3xl">{term}</span>
               <span className="font-bold uppercase">Years</span>
             </div>
