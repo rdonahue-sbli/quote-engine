@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'prototype.local',
       },
+      {
+        protocol: 'https',
+        hostname: '**.wpenginepowered.com',
+      },
     ],
   },
 }

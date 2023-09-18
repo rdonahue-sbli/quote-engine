@@ -1,0 +1,4 @@
+
+/** InsertJobLogResponse */
+export interface InsertJobLogResponse {
+}

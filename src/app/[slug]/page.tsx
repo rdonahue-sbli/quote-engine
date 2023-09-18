@@ -2,12 +2,15 @@ import { serverClient } from "~/server/api/server";
 import QuickQuote from "../_components/QuickQuote";
 import { Hero } from "../_components/Hero";
 import { Reviews } from "../_components/Reviews";
+import { headers } from 'next/headers'
 
 export default async function LandingPage({
   params: { slug },
 }: {
   params: { slug: string };
 }) {
+  const head = headers()
+  console.log(head.get('referer'))
   const [content] = await serverClient.wp.getPageBySlug(slug);
   const [mainHeroMedia, secondaryHeroMedia] = await serverClient.wp.getMediaByIds([content.acf.main_hero.image, content.acf.secondary_hero.image])
 

@@ -1,0 +1,230 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" name="SecurityService" targetNamespace="http://tempuri.org/">
+<wsp:Policy wsu:Id="BasicHttpBinding_ISecurityService_policy">
+<wsp:ExactlyOne>
+<wsp:All>
+<sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+<wsp:Policy>
+<sp:TransportToken>
+<wsp:Policy>
+<sp:HttpsToken RequireClientCertificate="false"/>
+</wsp:Policy>
+</sp:TransportToken>
+<sp:AlgorithmSuite>
+<wsp:Policy>
+<sp:Basic256/>
+</wsp:Policy>
+</sp:AlgorithmSuite>
+<sp:Layout>
+<wsp:Policy>
+<sp:Strict/>
+</wsp:Policy>
+</sp:Layout>
+</wsp:Policy>
+</sp:TransportBinding>
+</wsp:All>
+</wsp:ExactlyOne>
+</wsp:Policy>
+<wsdl:types>
+<xsd:schema targetNamespace="http://tempuri.org/Imports">
+<xsd:import schemaLocation="https://sbli-services-qa.sblisales.com/cloud-services/SecurityService.svc?xsd=xsd0" namespace="http://tempuri.org/"/>
+<xsd:import schemaLocation="https://sbli-services-qa.sblisales.com/cloud-services/SecurityService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Microsoft.ApplicationBlocks.ExceptionManagement"/>
+<xsd:import schemaLocation="https://sbli-services-qa.sblisales.com/cloud-services/SecurityService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+<xsd:import schemaLocation="https://sbli-services-qa.sblisales.com/cloud-services/SecurityService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ArrayWorks.Intertask.Model.Cloud"/>
+<xsd:import schemaLocation="https://sbli-services-qa.sblisales.com/cloud-services/SecurityService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+<xsd:import schemaLocation="https://sbli-services-qa.sblisales.com/cloud-services/SecurityService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.Data"/>
+</xsd:schema>
+</wsdl:types>
+<wsdl:message name="ISecurityService_AuthenticateUser_InputMessage">
+<wsdl:part name="parameters" element="tns:AuthenticateUser"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_AuthenticateUser_OutputMessage">
+<wsdl:part name="parameters" element="tns:AuthenticateUserResponse"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_AuthenticateUser_ArrayWorksFaultExceptionFault_FaultMessage">
+<wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/Microsoft.ApplicationBlocks.ExceptionManagement" name="detail" element="q1:ArrayWorksFaultException"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_GetCredentials_InputMessage">
+<wsdl:part name="parameters" element="tns:GetCredentials"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_GetCredentials_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetCredentialsResponse"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_GetCredentials_ArrayWorksFaultExceptionFault_FaultMessage">
+<wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/Microsoft.ApplicationBlocks.ExceptionManagement" name="detail" element="q2:ArrayWorksFaultException"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_GetInternalDomainList_InputMessage">
+<wsdl:part name="parameters" element="tns:GetInternalDomainList"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_GetInternalDomainList_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetInternalDomainListResponse"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_GetInternalDomainList_ArrayWorksFaultExceptionFault_FaultMessage">
+<wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/Microsoft.ApplicationBlocks.ExceptionManagement" name="detail" element="q3:ArrayWorksFaultException"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_CanPerformAction_InputMessage">
+<wsdl:part name="parameters" element="tns:CanPerformAction"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_CanPerformAction_OutputMessage">
+<wsdl:part name="parameters" element="tns:CanPerformActionResponse"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_CanPerformAction_ArrayWorksFaultExceptionFault_FaultMessage">
+<wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/Microsoft.ApplicationBlocks.ExceptionManagement" name="detail" element="q4:ArrayWorksFaultException"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_Recache_InputMessage">
+<wsdl:part name="parameters" element="tns:Recache"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_Recache_OutputMessage">
+<wsdl:part name="parameters" element="tns:RecacheResponse"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_Recache_ArrayWorksFaultExceptionFault_FaultMessage">
+<wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/Microsoft.ApplicationBlocks.ExceptionManagement" name="detail" element="q5:ArrayWorksFaultException"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_GetRemoteSystems_InputMessage">
+<wsdl:part name="parameters" element="tns:GetRemoteSystems"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_GetRemoteSystems_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetRemoteSystemsResponse"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_GetRemoteSystems_ArrayWorksFaultExceptionFault_FaultMessage">
+<wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/Microsoft.ApplicationBlocks.ExceptionManagement" name="detail" element="q6:ArrayWorksFaultException"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_InsertJobLog_InputMessage">
+<wsdl:part name="parameters" element="tns:InsertJobLog"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_InsertJobLog_OutputMessage">
+<wsdl:part name="parameters" element="tns:InsertJobLogResponse"/>
+</wsdl:message>
+<wsdl:message name="ISecurityService_InsertJobLog_ArrayWorksFaultExceptionFault_FaultMessage">
+<wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/Microsoft.ApplicationBlocks.ExceptionManagement" name="detail" element="q7:ArrayWorksFaultException"/>
+</wsdl:message>
+<wsdl:portType name="ISecurityService">
+<wsdl:operation name="AuthenticateUser">
+<wsdl:input wsaw:Action="http://tempuri.org/ISecurityService/AuthenticateUser" message="tns:ISecurityService_AuthenticateUser_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ISecurityService/AuthenticateUserResponse" message="tns:ISecurityService_AuthenticateUser_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://tempuri.org/ISecurityService/AuthenticateUserArrayWorksFaultExceptionFault" name="ArrayWorksFaultExceptionFault" message="tns:ISecurityService_AuthenticateUser_ArrayWorksFaultExceptionFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetCredentials">
+<wsdl:input wsaw:Action="http://tempuri.org/ISecurityService/GetCredentials" message="tns:ISecurityService_GetCredentials_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ISecurityService/GetCredentialsResponse" message="tns:ISecurityService_GetCredentials_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://tempuri.org/ISecurityService/GetCredentialsArrayWorksFaultExceptionFault" name="ArrayWorksFaultExceptionFault" message="tns:ISecurityService_GetCredentials_ArrayWorksFaultExceptionFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetInternalDomainList">
+<wsdl:input wsaw:Action="http://tempuri.org/ISecurityService/GetInternalDomainList" message="tns:ISecurityService_GetInternalDomainList_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ISecurityService/GetInternalDomainListResponse" message="tns:ISecurityService_GetInternalDomainList_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://tempuri.org/ISecurityService/GetInternalDomainListArrayWorksFaultExceptionFault" name="ArrayWorksFaultExceptionFault" message="tns:ISecurityService_GetInternalDomainList_ArrayWorksFaultExceptionFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="CanPerformAction">
+<wsdl:input wsaw:Action="http://tempuri.org/ISecurityService/CanPerformAction" message="tns:ISecurityService_CanPerformAction_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ISecurityService/CanPerformActionResponse" message="tns:ISecurityService_CanPerformAction_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://tempuri.org/ISecurityService/CanPerformActionArrayWorksFaultExceptionFault" name="ArrayWorksFaultExceptionFault" message="tns:ISecurityService_CanPerformAction_ArrayWorksFaultExceptionFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="Recache">
+<wsdl:input wsaw:Action="http://tempuri.org/ISecurityService/Recache" message="tns:ISecurityService_Recache_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ISecurityService/RecacheResponse" message="tns:ISecurityService_Recache_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://tempuri.org/ISecurityService/RecacheArrayWorksFaultExceptionFault" name="ArrayWorksFaultExceptionFault" message="tns:ISecurityService_Recache_ArrayWorksFaultExceptionFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetRemoteSystems">
+<wsdl:input wsaw:Action="http://tempuri.org/ISecurityService/GetRemoteSystems" message="tns:ISecurityService_GetRemoteSystems_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ISecurityService/GetRemoteSystemsResponse" message="tns:ISecurityService_GetRemoteSystems_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://tempuri.org/ISecurityService/GetRemoteSystemsArrayWorksFaultExceptionFault" name="ArrayWorksFaultExceptionFault" message="tns:ISecurityService_GetRemoteSystems_ArrayWorksFaultExceptionFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="InsertJobLog">
+<wsdl:input wsaw:Action="http://tempuri.org/ISecurityService/InsertJobLog" message="tns:ISecurityService_InsertJobLog_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ISecurityService/InsertJobLogResponse" message="tns:ISecurityService_InsertJobLog_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://tempuri.org/ISecurityService/InsertJobLogArrayWorksFaultExceptionFault" name="ArrayWorksFaultExceptionFault" message="tns:ISecurityService_InsertJobLog_ArrayWorksFaultExceptionFault_FaultMessage"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="BasicHttpBinding_ISecurityService" type="tns:ISecurityService">
+<wsp:PolicyReference URI="#BasicHttpBinding_ISecurityService_policy"/>
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="AuthenticateUser">
+<soap:operation soapAction="http://tempuri.org/ISecurityService/AuthenticateUser" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="ArrayWorksFaultExceptionFault">
+<soap:fault name="ArrayWorksFaultExceptionFault" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetCredentials">
+<soap:operation soapAction="http://tempuri.org/ISecurityService/GetCredentials" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="ArrayWorksFaultExceptionFault">
+<soap:fault name="ArrayWorksFaultExceptionFault" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetInternalDomainList">
+<soap:operation soapAction="http://tempuri.org/ISecurityService/GetInternalDomainList" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="ArrayWorksFaultExceptionFault">
+<soap:fault name="ArrayWorksFaultExceptionFault" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="CanPerformAction">
+<soap:operation soapAction="http://tempuri.org/ISecurityService/CanPerformAction" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="ArrayWorksFaultExceptionFault">
+<soap:fault name="ArrayWorksFaultExceptionFault" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="Recache">
+<soap:operation soapAction="http://tempuri.org/ISecurityService/Recache" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="ArrayWorksFaultExceptionFault">
+<soap:fault name="ArrayWorksFaultExceptionFault" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetRemoteSystems">
+<soap:operation soapAction="http://tempuri.org/ISecurityService/GetRemoteSystems" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="ArrayWorksFaultExceptionFault">
+<soap:fault name="ArrayWorksFaultExceptionFault" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="InsertJobLog">
+<soap:operation soapAction="http://tempuri.org/ISecurityService/InsertJobLog" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="ArrayWorksFaultExceptionFault">
+<soap:fault name="ArrayWorksFaultExceptionFault" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="SecurityService">
+<wsdl:port name="BasicHttpBinding_ISecurityService" binding="tns:BasicHttpBinding_ISecurityService">
+<soap:address location="https://sbli-services-qa.sblisales.com/cloud-services/SecurityService.svc"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

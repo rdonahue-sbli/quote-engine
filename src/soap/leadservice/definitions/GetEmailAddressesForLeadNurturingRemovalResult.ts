@@ -1,0 +1,4 @@
+
+/** GetEmailAddressesForLeadNurturingRemovalResult */
+export interface GetEmailAddressesForLeadNurturingRemovalResult {
+}

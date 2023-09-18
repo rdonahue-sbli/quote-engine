@@ -1,0 +1,4 @@
+
+/** GetRisk */
+export interface GetRisk {
+}

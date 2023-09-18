@@ -6,11 +6,13 @@ import {
 } from "~/schema/wordpress";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
+const baseUrl = 'https://sblimarketing.wpenginepowered.com'
+
 const getPageBySlug = publicProcedure
   .input(z.string())
   .query(async ({ input }) => {
     const response = await fetch(
-      `http://prototype.local/wp-json/wp/v2/pages?slug=${input}`,
+      `${ baseUrl }/wp-json/wp/v2/pages?slug=${input}`,
       { next: { revalidate: 0 } }
     );
 
@@ -28,7 +30,7 @@ const getMediaById = publicProcedure
   .input(z.number())
   .query(async ({ input }) => {
     const response = await fetch(
-      `http://prototype.local/wp-json/wp/v2/media/${input}`,
+      `${ baseUrl }/wp-json/wp/v2/media/${input}`,
       { next: { revalidate: 0 } }
     );
 
@@ -44,7 +46,7 @@ const getMediaByIds = publicProcedure
   .query(async ({ input }) => {
     const fetchCalls = input.map(async (id) => {
       const response = await fetch(
-        `http://prototype.local/wp-json/wp/v2/media/${id}`,
+        `${ baseUrl }/wp-json/wp/v2/media/${id}`,
         { next: { revalidate: 0 } }
       );
       if (!response.ok) {

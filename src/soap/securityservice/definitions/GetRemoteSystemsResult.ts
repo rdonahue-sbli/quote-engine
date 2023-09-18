@@ -1,0 +1,4 @@
+
+/** GetRemoteSystemsResult */
+export interface GetRemoteSystemsResult {
+}
