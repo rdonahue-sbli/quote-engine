@@ -9,6 +9,7 @@ const handler = (req: Request) => {
     endpoint: "/api/v1",
     req,
     router: appRouter,
+    batching: { enabled: false },
     createContext: createTRPCContext,
     onError:
     process.env.NODE_ENV === "development"

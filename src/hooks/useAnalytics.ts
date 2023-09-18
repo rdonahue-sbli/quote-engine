@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function useAnalytics() {
   const [analytics] = useState(() => {
     return AnalyticsBrowser.load({
-      writeKey: "y46ko1YXiCZwyGtPGlAppg3pgfcCDSHr",
+      writeKey: process.env.NEXT_PUBLIC_SEGMENT_KEY!,
     });
   });
 

@@ -1,7 +1,7 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { QuickQuoteSchema } from "~/schema/forms/QuickQuote";
 import { z } from "zod";
 import {
@@ -35,19 +35,26 @@ export default function QuickQuote() {
   const [quote, setQuote] = useState([0]);
   const [coverage, setCoverage] = useState(0);
   const [term, setTerm] = useState(0);
+  const requestQuoteForm = useRef<HTMLFormElement>(null)
 
-  const { mutate: getQuote, error, data } = trpc.rates.getRate.useMutation();
+  const { mutate: getQuote, error, data, isLoading } = trpc.rates.getRate.useMutation();
   const { mutate: createLead } = trpc.tap.createLead.useMutation();
+
+  useEffect(() => {
+    analytics.page()
+  }, [analytics])
 
   const handleValidSubmit: SubmitHandler<
     z.infer<typeof QuickQuoteSchema>
   > = async (data, e) => {
-    const user = await analytics.user();
-
+    
     getQuote(data, {
       onSuccess: (quote) => setQuote(quote),
     });
 
+    const user = await analytics.user()
+    analytics.track('quoteRequested', data)
+    
     createLead(
       {
         ...data,
@@ -58,39 +65,6 @@ export default function QuickQuote() {
         onError: (res) => console.warn(res.message),
       }
     );
-
-    // try {
-    //   const rate = await fetch(`api/rate`, {
-    //     method: "POST",
-    //     body: JSON.stringify(data),
-    //   })
-    //     .then((res) => res.json())
-    //     .then((data) => setQuote(data));
-    //   const user = await analytics.user();
-
-    //   // Lookup postal code location
-    //   const cityStateRespone = await fetch(
-    //     `api/locations/city-state/${data.postalCode}`
-    //   );
-    //   const cityStateJson = await cityStateRespone.json();
-
-    //   const cityState = CityStateResultSchema.safeParse(cityStateJson);
-    //   if (!cityState.success) throw new Error(cityStateJson);
-
-    //   // Create Lead
-    //   fetch("api/tap/leads", {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //       city: cityState.data.City,
-    //       state: cityState.data.State,
-    //       anonymousId: user.anonymousId(),
-    //       ...data,
-    //     }),
-    //   });
-    // } catch (e) {
-    //   // TODO: Notify user of invalid zip
-    //   console.error(CityStateErrorSchema.parse(e).Error);
-    // }
   };
 
   const handleErrors: SubmitErrorHandler<z.infer<typeof QuickQuoteSchema>> = (
@@ -109,6 +83,7 @@ export default function QuickQuote() {
         <div className="flex-1 max-w-screen-md text-slate-500">
           <form
             className="flex-1"
+            ref={requestQuoteForm}
             onSubmit={handleSubmit(handleValidSubmit, handleErrors)}
           >
             {/* Coverage & Term Fields */}
@@ -442,10 +417,10 @@ export default function QuickQuote() {
           <div className="px-8 py-8 text-white rounded-br-3xl rounded-tl-3xl bg-sky-700">
             <h2 className="text-3xl font-semibold text-center">Policy Price</h2>
             <div className="flex flex-col items-center py-6">
-              {isSubmitting && (
+              {isLoading && (
                 <span className="w-20 text-yellow-400 loading loading-spinner"></span>
               )}
-              {!isSubmitting && (
+              {!isLoading && (
                 <>
                   <div>
                     <span className="mr-2 uppercase">from</span>

@@ -16,11 +16,11 @@ export const Hero = ({ image, content, mode, reverse }: HeroComponentProps) => {
       }`}
     >
       <div
-        className={`flex flex-col-reverse justify-evenly lg:container lg:mx-auto ${
+        className={`flex flex-col-reverse justify-evenly lg:container lg:mx-auto gap-12 ${
           reverse ? `md:flex-row-reverse` : `md:flex-row`
         }`}
       >
-        <div className="flex flex-col items-center justify-center flex-1 gap-6 p-8 mx-auto text-center text-white md:ml-0 max-w-prose md:items-start md:text-left">
+        <div className="flex flex-col items-center justify-center flex-1 gap-6 py-12 mx-auto text-center text-white md:ml-0 max-w-prose md:items-start md:text-left">
           <h2 className="text-3xl font-bold lg:leading-tight lg:text-5xl line-clamp-3 font-merriweather">
             {content.title}
           </h2>
