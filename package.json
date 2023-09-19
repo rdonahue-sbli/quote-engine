@@ -16,13 +16,9 @@
     "@trpc/client": "^10.38.0",
     "@trpc/react-query": "^10.38.0",
     "@trpc/server": "^10.38.0",
-    "@types/node": "20.5.6",
-    "@types/react": "18.2.21",
-    "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
     "daisyui": "^3.6.3",
     "date-fns": "^2.30.0",
-    "drizzle-orm": "^0.28.5",
     "encoding": "^0.1.13",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
@@ -41,6 +37,9 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@types/node": "20.5.6",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "18.2.7",
     "@types/validator": "^13.11.1",
     "drizzle-kit": "^0.19.13"
   }
