@@ -40,13 +40,6 @@ export default function RootLayout({
     >
       <body className="font-assistant">
         <ClientProvider>
-          <header className="flex">
-            <div className="p-4 lg:container lg:mx-auto">
-              <div className="w-56">
-                <Logo></Logo>
-              </div>
-            </div>
-          </header>
           {children}
         </ClientProvider>
       </body>
