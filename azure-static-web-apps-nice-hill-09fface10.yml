@@ -26,6 +26,7 @@ jobs:
       NEXT_PUBLIC_SEGMENT_KEY: $(NEXT_PUBLIC_SEGMENT_KEY)
       TRUSTPILOT_KEY: $(TRUSTPILOT_KEY)
       USPS_ID: $(USPS_ID)
+      BASE_URL: $(BASE_URL)
     inputs:
       azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_HILL_09FFACE10)
 ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
