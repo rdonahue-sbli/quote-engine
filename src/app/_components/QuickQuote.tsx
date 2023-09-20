@@ -20,6 +20,7 @@ import useAnalytics from "~/hooks/useAnalytics";
 import { ClientProvider } from "../_trpc/provider";
 import { trpc } from "../_trpc/client";
 import { serverClient } from "~/server/api/server";
+import { serialize } from "v8";
 
 export default function QuickQuote() {
   const { analytics } = useAnalytics();
@@ -33,28 +34,48 @@ export default function QuickQuote() {
   });
 
   const [quote, setQuote] = useState([0]);
+  const [queryParams, setQueryParams] = useState<undefined | string>(undefined);
   const [coverage, setCoverage] = useState(0);
   const [term, setTerm] = useState(0);
-  const requestQuoteForm = useRef<HTMLFormElement>(null)
+  const requestQuoteForm = useRef<HTMLFormElement>(null);
 
-  const { mutate: getQuote, error, data, isLoading } = trpc.rates.getRate.useMutation();
+  const {
+    mutate: getQuote,
+    error,
+    data,
+    isLoading,
+  } = trpc.rates.getRate.useMutation();
   const { mutate: createLead } = trpc.tap.createLead.useMutation();
 
   useEffect(() => {
-    analytics.page()
-  }, [analytics])
+    analytics.page();
+  }, [analytics]);
 
   const handleValidSubmit: SubmitHandler<
     z.infer<typeof QuickQuoteSchema>
   > = async (data, e) => {
-    
+
+    setQueryParams(undefined)
+
     getQuote(data, {
-      onSuccess: (quote) => setQuote(quote),
+      onSuccess: (quote) => {
+        setQuote(quote)
+        const { birthdate, isNicotineUser, hasHealthIssues, coverage, ...rest } = data 
+        const searchParams = new URLSearchParams({
+          ...rest,
+          coverage: coverage.toString(),
+          isNicotineUser: isNicotineUser ? "true" : "false",
+          hasHealthIssues: hasHealthIssues ? "true" : "false",
+          birthdate: `${birthdate.month}/${birthdate.day}/${birthdate.year}`
+        })
+    
+        setQueryParams(searchParams.toString())
+      },
     });
 
-    const user = await analytics.user()
-    analytics.track('quoteRequested', data)
-    
+    const user = await analytics.user();
+    analytics.track("quoteRequested", data);
+
     createLead(
       {
         ...data,
@@ -76,11 +97,11 @@ export default function QuickQuote() {
 
   return (
     <div className="container p-4 mx-auto md:p-0">
-      <h1 className="text-3xl font-bold text-sky-900">
-        Protect your family with Term Life insurance
-      </h1>
       <div className="flex flex-col justify-center gap-4 md:flex-row">
         <div className="flex-1 max-w-screen-md text-slate-500">
+          <h1 className="text-3xl font-bold text-sky-900" id="quoteForm">
+            Get your free instant quote now
+          </h1>
           <form
             className="flex-1"
             ref={requestQuoteForm}
@@ -413,7 +434,7 @@ export default function QuickQuote() {
             </div>
           </form>
         </div>
-        <div className="flex-1 pt-6 md:max-w-md">
+        <div className="flex-1 pt-6 md:max-w-md gap-2 flex flex-col">
           <div className="px-8 py-8 text-white rounded-br-3xl rounded-tl-3xl bg-sky-700">
             <h2 className="text-3xl font-semibold text-center">Policy Price</h2>
             <div className="flex flex-col items-center py-6">
@@ -461,12 +482,13 @@ export default function QuickQuote() {
               </div>
             </div>
           </div>
+          { queryParams ? <a href={`https://apply.sbli.com/prescreen/needs?${queryParams}`} target="_blank" className="btn bg-yellow-400 border-yellow-500 hover:border-yellow-600 text-yellow-800 w-full hover:bg-yellow-500 ">Start Your Application</a> : null} 
           <div className="p-4 text-center">
             <h4 className="text-2xl font-bold">Questions?</h4>
             <div>
               Call us at <a href="tel:888-630-5000">888-630-5000</a>
             </div>
-          </div>
+          </div> 
         </div>
       </div>
     </div>

@@ -34,7 +34,7 @@ const CustomHeroSchema = z.object({
   title: z.string(),
   content: z.string(),
   button_label: z.string().nullable(),
-  button_url: z.string().url().nullable()
+  button_url: z.string().url().or(z.nullable(z.string()))
 });
 
 export type CustomHero = z.infer<typeof CustomHeroSchema>;
@@ -44,6 +44,7 @@ export const CustomMarketingSchema = z.object({
     main_hero: CustomHeroSchema,
     main: CustomHeroSchema.pick({ 'title': true, 'content': true }),
     secondary_hero: CustomHeroSchema,
+    disclaimer: z.string()
   }),
 });
 
