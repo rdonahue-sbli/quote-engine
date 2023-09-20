@@ -5,11 +5,9 @@ import { createClientAsync as createLeadClient } from "~/soap/leadservice";
 import { QuickQuotePayloadSchema } from "~/schema/forms/QuickQuote";
 import { validateZip } from "./locations";
 
-// TODO: Add to env file
-const securityServiceWSDL =
-  "https://sbli-services-qa.sblisales.com/cloud-services/SecurityService.svc?wsdl";
-const leadServiceWSDL =
-  "https://sbli-services-qa.sblisales.com/cloud-services/LeadService.svc?wsdl";
+// TODO: Add user and pass to env file
+const securityServiceWSDL = `${process.env.TAP_SOAP_URL}/cloud-services/SecurityService.svc?wsdl`;
+const leadServiceWSDL = `${process.env.TAP_SOAP_URL}/cloud-services/LeadService.svc?wsdl`;
 const username = "wordpresssite";
 const password = "w0rdPre$$site";
 
@@ -27,15 +25,14 @@ export const authenticate = async () => {
 const createLead = publicProcedure
   .input(QuickQuotePayloadSchema)
   .mutation(async ({ input: payload }) => {
+    const { City, State } = await validateZip(payload.postalCode);
 
-    const { City, State } = await validateZip(payload.postalCode)
-
-    const lead =TapLeadSchema.parse({
+    const lead = TapLeadSchema.parse({
       ...payload,
       city: City,
       state: State,
-    })
-    console.log(lead)
+    });
+    console.log(lead);
 
     const authUser = await authenticate();
     const leadClient = await createLeadClient(leadServiceWSDL);
@@ -46,7 +43,7 @@ const createLead = publicProcedure
         securityToken: authUser,
       });
 
-    console.log(CreateLeadResult?.Errors)
+    console.log(CreateLeadResult?.Errors);
 
     return CreateLeadResult;
   });
