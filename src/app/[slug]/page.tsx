@@ -41,7 +41,8 @@ export default async function LandingPage({
       <header className="flex">
         <div className="p-4 lg:container lg:mx-auto">
           <div className="w-56">
-            <Logo></Logo>
+            <h1>test</h1>
+            {/* <Logo></Logo> */}
           </div>
         </div>
       </header>
@@ -52,7 +53,7 @@ export default async function LandingPage({
           mode="light"
         /> */}
         <div>
-          <QuickQuote></QuickQuote>
+          {/* <QuickQuote></QuickQuote> */}
         </div>
         {/* <div className="flex flex-col items-center gap-8 lg:container lg:mx-auto line-clamp-2">
           <h1 className="max-w-4xl text-3xl font-bold text-center lg:text-6xl text-sky-950 font-merriweather">
