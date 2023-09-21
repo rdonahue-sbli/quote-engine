@@ -30,11 +30,11 @@ export default async function LandingPage({
   const [content] = await serverClient.wp.getPageBySlug(slug);
   if (!content?.acf) notFound();
 
-  const [mainHeroMedia, secondaryHeroMedia] =
-    await serverClient.wp.getMediaByIds([
-      content?.acf.main_hero.image,
-      content?.acf.secondary_hero.image,
-    ]);
+  // const [mainHeroMedia, secondaryHeroMedia] =
+  //   await serverClient.wp.getMediaByIds([
+  //     content?.acf.main_hero.image,
+  //     content?.acf.secondary_hero.image,
+  //   ]);
 
   return (
     <>
@@ -46,11 +46,11 @@ export default async function LandingPage({
         </div>
       </header>
       <div className="flex flex-col gap-16">
-        <Hero
+        {/* <Hero
           content={content.acf.main_hero}
           image={mainHeroMedia}
           mode="light"
-        />
+        /> */}
         <div>
           <QuickQuote></QuickQuote>
         </div>
@@ -63,12 +63,12 @@ export default async function LandingPage({
           </p>
         </div>
         <Reviews></Reviews>
-        <Hero
+        {/* <Hero
           content={content.acf.secondary_hero}
           image={secondaryHeroMedia}
           mode="dark"
           reverse
-        />
+        /> */}
         <div className="bg-sky-600 text-white py-8 text-xs text-opacity-80">
           <div className="flex flex-col items-center gap-8 lg:container lg:mx-auto">
             {content.acf.disclaimer}
