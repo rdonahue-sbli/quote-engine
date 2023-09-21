@@ -6,21 +6,21 @@ import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { Logo } from "../_components/Logo";
 
-export async function generateMetadata(
-  {
-    params,
-  }: {
-    params: { slug: string };
-  },
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const [data] = await serverClient.wp.getPageBySlug(params.slug);
+// export async function generateMetadata(
+//   {
+//     params,
+//   }: {
+//     params: { slug: string };
+//   },
+//   parent: ResolvingMetadata
+// ): Promise<Metadata> {
+//   const [data] = await serverClient.wp.getPageBySlug(params.slug);
 
-  return {
-    title: data?.title?.rendered,
-    description: data?.excerpt?.rendered,
-  };
-}
+//   return {
+//     title: data?.title?.rendered,
+//     description: data?.excerpt?.rendered,
+//   };
+// }
 
 export default async function LandingPage({
   params: { slug },
