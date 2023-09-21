@@ -27,6 +27,7 @@ jobs:
       TRUSTPILOT_KEY: $(TRUSTPILOT_KEY)
       USPS_ID: $(USPS_ID)
       BASE_URL: $(BASE_URL)
+      TAP_SOAP_URL: $(TAP_SOAP_URL)
     inputs:
       azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_HILL_09FFACE10)
 ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
@@ -34,7 +35,5 @@ jobs:
       app_location: "/" # App source code path
       api_location: "" # Api source code path - optional
       output_location: ".next" # Built app content directory - optional
-      app_build_command: 'npm run build'
-      api_build_command: 'rm -rf ./node_modules/@next/swc-* && rm -rf ./.next/cache'
 ###### End of Repository/Build Configurations ######
 
