@@ -44,7 +44,8 @@ export const CustomMarketingSchema = z.object({
     main_hero: CustomHeroSchema,
     main: CustomHeroSchema.pick({ 'title': true, 'content': true }),
     secondary_hero: CustomHeroSchema,
-    disclaimer: z.string()
+    disclaimer: z.string(),
+    phone_number: z.string()
   }),
 });
 

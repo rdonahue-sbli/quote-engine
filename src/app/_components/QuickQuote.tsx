@@ -22,7 +22,7 @@ import { trpc } from "../_trpc/client";
 import { serverClient } from "~/server/api/server";
 import { serialize } from "v8";
 
-export default function QuickQuote() {
+export default function QuickQuote({ phoneNumber }: { phoneNumber: string}) {
   const { analytics } = useAnalytics();
   const {
     register,
@@ -486,7 +486,7 @@ export default function QuickQuote() {
           <div className="p-4 text-center">
             <h4 className="text-2xl font-bold">Questions?</h4>
             <div>
-              Call us at <a href="tel:888-630-5000">888-630-5000</a>
+              Call us at <a href={`tel:${ phoneNumber }`}>{ phoneNumber }</a>
             </div>
           </div> 
         </div>

@@ -39,9 +39,13 @@ export default async function LandingPage({
   return (
     <>
       <header className="flex">
-        <div className="p-4 lg:container lg:mx-auto">
+        <div className="p-4 lg:container lg:mx-auto flex flex-row justify-between items-center">
           <div className="w-56">
             <Logo></Logo>
+          </div>
+          <div className="flex flex-col text-right">
+              Talk to us direct
+               <a href={`tel:${ content.acf.phone_number }`} className="text-2xl font-bold text-sky-600">{ content.acf.phone_number }</a>
           </div>
         </div>
       </header>
@@ -52,7 +56,7 @@ export default async function LandingPage({
           mode="light"
         />
         <div>
-          <QuickQuote></QuickQuote>
+          <QuickQuote phoneNumber={content.acf.phone_number}></QuickQuote>
         </div>
         <div className="flex flex-col items-center gap-8 lg:container lg:mx-auto line-clamp-2">
           <h1 className="max-w-4xl text-3xl font-bold text-center lg:text-6xl text-sky-950 font-merriweather">
